@@ -945,7 +945,7 @@ class Cloudinary
         if (is_float($exp)) {
             return self::float_to_string($exp);
         }
-        if (preg_match('/^!.+!$/', $exp)) {
+        if (! is_null( $exp ) && preg_match('/^!.+!$/', $exp)) {
             return $exp;
         } else {
             if (empty(self::$IF_REPLACE_RE)) {
