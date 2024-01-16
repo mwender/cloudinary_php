@@ -867,7 +867,7 @@ class Cloudinary
             // Build a valid overlay string.
             $layer = implode(":", array_filter($components, 'Cloudinary::is_not_null'));
         } // Handle fetch overlay from string definition.
-        elseif (substr($layer, 0, strlen('fetch:')) === 'fetch:') {
+        elseif ( ! is_null( $layer ) && substr($layer, 0, strlen('fetch:')) === 'fetch:') {
             $url = substr($layer, strlen('fetch:'));
             $b64 = self::base64url_encode($url);
             $layer = 'fetch:' . $b64;
