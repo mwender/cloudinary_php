@@ -676,7 +676,7 @@ class Cloudinary
 
 
         $param_filter = function ($value) {
-            return $value === 0 || $value === '0' || trim($value) == true;
+            return $value === 0 || $value === '0' || ( ! is_null( $value ) && (trim( $value ) == true) );
         };
         $params = array_filter($params, $param_filter);
         ksort($params);
