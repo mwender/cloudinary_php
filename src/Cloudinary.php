@@ -543,11 +543,11 @@ class Cloudinary
 
         $no_html_sizes = $has_layer || !empty($angle) || $crop == "fit" || $crop == "limit" || $responsive_width;
 
-        if (strlen($width) == 0 || $width &&
+        if ( ! is_null( $width ) && (strlen($width) == 0) || $width &&
             (substr($width, 0, 4) == "auto" || floatval($width) < 1 || $no_html_sizes)) {
             unset($options["width"]);
         }
-        if (strlen($height) == 0 || $height && (floatval($height) < 1 || $no_html_sizes)) {
+        if ( ! is_null( $height ) && (strlen($height) == 0) || $height && (floatval($height) < 1 || $no_html_sizes)) {
             unset($options["height"]);
         }
 
@@ -700,10 +700,10 @@ class Cloudinary
                 Cloudinary::generate_transformation_string($responsive_width_transformation)
             );
         }
-        if (substr($width, 0, 4) == "auto" || $responsive_width) {
+        if ( ! is_null( $width ) && (substr($width, 0, 4) == "auto") || $responsive_width) {
             $options["responsive"] = true;
         }
-        if (substr($dpr, 0, 4) == "auto") {
+        if ( ! is_null( $dpr ) && (substr($dpr, 0, 4) == "auto") ) {
             $options["hidpi"] = true;
         }
 
